@@ -21,6 +21,11 @@ namespace comp2084_lab3
                 if (!String.IsNullOrEmpty(Request.QueryString["StudentID"]))
                 {
                     GetStudent();
+                    pnlCourses.Visible = true;
+                }
+                else
+                {
+                    pnlCourses.Visible = false;
                 }
             }
 

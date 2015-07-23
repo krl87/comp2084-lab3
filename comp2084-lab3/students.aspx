@@ -11,7 +11,7 @@
             <asp:BoundField DataField="StudentID" HeaderText="Student ID" />
             <asp:BoundField DataField="LastName" HeaderText="Last Name" />
             <asp:BoundField DataField="FirstMidName" HeaderText="First Name" />
-             <asp:BoundField DataField="EnrollmentDate" HeaderText="Date Enrolled" />
+             <asp:BoundField DataField="EnrollmentDate" HeaderText="Date Enrolled" DataFormatString="{0:MM-dd-yyyy}" />
             <asp:HyperLinkField HeaderText="Edit" Text="Edit" DataNavigateUrlFields="StudentID" DataNavigateUrlFormatString="student-details.aspx?StudentID={0}" />
             <asp:CommandField ShowDeleteButton="true" DeleteText="Delete" HeaderText="Delete" />
         </Columns>
