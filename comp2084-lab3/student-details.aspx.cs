@@ -48,7 +48,7 @@ namespace comp2084_lab3
                             join c in db.Courses on en.CourseID equals c.CourseID
                             join d in db.Departments on c.DepartmentID equals d.DepartmentID
                             where en.StudentID == StudentID
-                            select new { en.EnrollmentID, en.Grade, c.Title, d.Name});
+                            select new {en.EnrollmentID, en.Grade, c.Title, d.Name});
 
                 grdCourses.DataSource = objK.ToList();
                 grdCourses.DataBind();
@@ -101,7 +101,24 @@ namespace comp2084_lab3
 
         protected void grdCourses_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
+            //get selected id
 
+            Int32 EnrollmentID = Convert.ToInt32(grdCourses.DataKeys[e.RowIndex].Values["EnrollmentID"]);
+
+            //connect
+            using (DefaultConnection db = new DefaultConnection())
+            {
+                //get record
+                Enrollment objK = (from en in db.Enrollments
+                                   where en.EnrollmentID == EnrollmentID
+                                   select en).FirstOrDefault();
+                //delete
+                db.Enrollments.Remove(objK);
+                db.SaveChanges();
+
+                //refresh
+                GetStudent();
+            }
         }
     }
 }
